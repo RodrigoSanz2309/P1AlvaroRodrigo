@@ -34,18 +34,31 @@
     </header>
 
     <nav>Menu</nav>
-    <aside>Info complementaria</aside>
+    <aside>
+        <h3>Info complementaria</h3>
+        <p id="Saludo"></p>
+    </aside>
     
     <main>
         <section>
             <a href="https://www.uah.es/es/" target="_blank">Info habitacion</a>
             <br><br>
             <img src="https://imgs.search.brave.com/hbF-GS4Wv7r6vJAccuJ3Mc_SNsay2lcfBpHvm2BgcbI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/dWFoLmVkdS9pbWFn/ZXMvY29tX2Ryb3Bw/aWNzLzcxMC90aHVt/Ym5haWxzL3VhaC1z/dGFpcmNhc2UuanBn" alt="Imagen" width="50%">
+            <br><br>
+            <a href="minombre.html">Nombre</a>
         </section>
         
         <section>Info sensores</section>
     </main>
     
     <footer>Universidad de Alcala</footer>
+    <script>
+        let nombre = localStorage.getItem("fname");
+        if(nombre) {
+            document.getElementById("Saludo").innerHTML = "Hola "+ nombre + ":Bienvenido a la Smart Box.";
+
+        }
+    </script>
+        
 </body>
 </html>
