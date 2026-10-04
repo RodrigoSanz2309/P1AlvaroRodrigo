@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-<title>Configuración - Smart Room</title>
-<link rel="stylesheet" href="css/iroom.css">
+    <title>Configuración - Smart Room</title>
+    <link rel="stylesheet" href="css/iroom.css">
 
 </head>
 <body>
@@ -11,79 +11,121 @@
         <h1>Smart Room</h1>
     </header>    
     <main>
-        <section>
-            <h3>Datos de la habitación</h3>
+        <form action="datos.js">
+            <section>
+                <h3>Datos de la habitación</h3>
 
-            <label for="País">País:</label>
-            <input type="text" id="País" name="País" placeholder="Ej. España" list="lista-paises">
-            <datalist id="lista-paises">
-                <option value="España">
-                <option value="Portugal">
-                <option value="Francia">
-            </datalist>
+                <label for="País">País:</label>
+                <input type="text" id="País" name="País" placeholder="Ej. España" list="lista-paises">
+                <datalist id="lista-paises">
+                    <option value="España"></option>
+                    <option value="Portugal"></option>
+                    <option value="Francia"></option>
+                </datalist>
 
-            <br><br>
+                <br><br>
 
-            <label for="Ciudad">Ciudad:</label>
-            <input type="text" id="Ciudad" name="Ciudad" placeholder="Ej. Madrid" list="lista-ciudades">
-            <datalist id="lista-ciudades">
-                <option value="Madrid"></option>
-                <option value="Barcelona"></option>
-                <option value="Valencia"></option>
-            </datalist>
+                <label for="Ciudad">Ciudad:</label>
+                <input type="text" id="Ciudad" name="Ciudad" placeholder="Ej. Madrid" list="lista-ciudades">
+                <datalist id="lista-ciudades">
+                    <option value="Madrid"></option>
+                    <option value="Barcelona"></option>
+                    <option value="Valencia"></option>
+                </datalist>
 
-            <br><br>
+                <br><br>
 
-            <label for="mapa">Mapa URL:</label>
-            <input type="url" id="mapa" name="mapa" placeholder="Introduce la URL del mapa">
-            
-            <br><br>
+                <label for="mapa">Mapa URL:</label>
+                <input type="url" id="mapa" name="mapa" placeholder="Introduce la URL del mapa">           
+                <br><br>
 
-            <label for="Coordenadas GPS">Coordenadas GPS:</label>
-            <input type="text" id="Coordenadas GPS" name="Coordenadas GPS" placeholder="Ej. 40.4168, -3.7038">
+                <label for="Coordenadas GPS">Coordenadas GPS:</label>
+                <input type="text" id="Coordenadas GPS" name="Coordenadas GPS" placeholder="Ej. 40.4168, -3.7038">
 
-            <br><br>
+                <br><br>
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="Imagen" name="Imagen">
 
-            <label for="imagen">Imagen:<label>
-            <input type="file" id="Imagen" name="Imagen">
-
-            <br><br>
-            <label for="Password">Contraseña:</label>
-            <input type="Password" id="Password" name="Password">
-
+                <br><br>
+                <label for="Password">Contraseña:</label>
+                <input type="Password" id="Password" name="Password">
 
 
 
-        </section>
+
+            </section>
 
 
-        </section>
+
+            <section>
+                <h3>Selección de sensores</h3>
+
+                <input type="checkbox" id="Temperatura">
+                <label for="Temperatura">Temperatura</label>
 
 
-        <section>
-            <h3>Datos de los sensores</h3>
+                <br><br>
 
-            <input type="checkbox" id="Temperatura">
-            <label for="Temperatura">Temperatura</label>
+                <input type="checkbox" id="humedad">
+                <label for="humedad">Humedad</label>
 
+                <br><br>
 
-            <br><br>
+                <input type="checkbox" id="sonido">
+                <label for="sonido">Nivel de sonido</label>
 
-            <input type="checkbox" id="humedad">
-            <label for="humedad">Humedad</label>
+                <br><br>
 
-            <br><br>
+                <input type="checkbox" id="luz">
+                <label for="luz">Nivel de luz</label>
 
-            <input type="checkbox" id="co2">
-            <label for="co2">CO2</label>
+                <br><br>
 
-            <br><br>
+                <input type="checkbox" id="movimiento">
+                <label for="movimiento">Movimiento</label>
 
-            <input type="checkbox" id="movimiento">
-            <label for="movimiento">Movimiento</label>
-            
-        </section>
+                <h3>Selección de alertas</h3>
+                <label for="tempMax">Temperatura máxima:</label>
+                <input type="number" id="tempMax" name="tempMax" min="-20" max="45" step="0.5" placeholder="Ej. 30.5">
+                <br><br>
+                <label for="tempMin">Temperatura mínima:</label>
+                <input type="number" id="tempMin" name="tempMin" min="-20" max="45" step="0.5" placeholder="Ej. 10.5">
 
+                <br><br>
+                <label>Diferencia de temperatura:<output id="diferencia"></output></label>
+            </section>
+            <input type="submit" value="Enviar información">
+        </form>
+    
+        <script>
+            //elementos para trabajar
+            let inputMax = document.getElementById("tempMax");
+            let inputMin = document.getElementById("tempMin");
+            let salidadiferencia = document.getElementById("diferencia");
+            //funcion calcular la diferencia de temperatura
+            function calculoDiferencia() {
+                let max = parseFloat(inputMax.value);
+                let min = parseFloat(inputMin.value);
+                //para saber si se han introducido valores
+                if (!isNaN(max) && !isNaN(min)) {
+                    if(max<min){
+                        inputMax.setCustomValidity("La temperatura máxima no puede ser menor que la mínima.");
+                        salidadiferencia.value = "Error: La temperatura máxima no puede ser menor que la mínima.";
+                    }else{
+                        inputMax.setCustomValidity("");
+                        salidadiferencia.value = (max - min) " °C";
+                    }
+                }
+            }
+
+            inputMax.addEventListener("input", calculoDiferencia);
+            inputMin.addEventListener("input", calculoDiferencia);
+
+        </script>
+
+        <p style="clear: both; text-align: center; padding-top:20px">
+            <a href="index.html">Volver a la página principal</a>
+        </p>
     </main>
     
     <footer>Universidad de Alcalá</footer>

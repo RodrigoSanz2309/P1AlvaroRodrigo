@@ -6,22 +6,31 @@
     <link rel="stylesheet" href="css/iroom.css">
 </head>
 <body>
+    <header><h1>Smart Room</h1></header>
 
-    <h1>Introduzca su nombre</h1>
- 
-    <input type="text" id="nombre">
- 
+<main>
+    <section>
+    <h2>Introduzca su nombre</h2>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Escriba su nombre">
+
     <button onclick="guardarNombre()">Guardar</button>
- 
+    <br><br>
+
+    <a href="index.html">Volver a la página principal</a>
+
+    </section>
+    
+</main>
+
     <script>
         function guardarNombre() {
-            let nombre =
-            document.getElementById("nombre").value;
- 
+            let nombre = document.getElementById("nombre").value;
             localStorage.setItem("fname", nombre);
+            alert("Nombre guardado: " + nombre + ". Ahora puede volver a la página principal.");
         }
     </script>
- 
 </body>
 </html>
 
