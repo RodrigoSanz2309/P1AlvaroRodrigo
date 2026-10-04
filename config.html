@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
 <title>Configuración - Smart Room</title>
 <link rel="stylesheet" href="css/iroom.css">
 
@@ -14,28 +15,35 @@
             <h3>Datos de la habitación</h3>
 
             <label for="País">País:</label>
-            <select id="País" name="País">
-                <option value="España">España</option>
-                <option value="Portugal">Portugal</option>
-                <option value="Francia">Francia</option>
-            </select>
+            <input type="text" id="País" name="País" placeholder="Ej. España" list="lista-paises">
+            <datalist id="lista-paises">
+                <option value="España">
+                <option value="Portugal">
+                <option value="Francia">
+            </datalist>
 
             <br><br>
 
             <label for="Ciudad">Ciudad:</label>
-            <select id="Ciudad" name="Ciudad">
-                <option value="Madrid">Madrid</option>
-                <option value="Barcelona">Barcelona</option>
-                <option value="Valencia">Valencia</option>
-            </select>
+            <input type="text" id="Ciudad" name="Ciudad" placeholder="Ej. Madrid" list="lista-ciudades">
+            <datalist id="lista-ciudades">
+                <option value="Madrid"></option>
+                <option value="Barcelona"></option>
+                <option value="Valencia"></option>
+            </datalist>
 
             <br><br>
 
             <label for="mapa">Mapa URL:</label>
-            <input type="text" id="mapa" name="mapa" placeholder="Introduce la URL del mapa">
+            <input type="url" id="mapa" name="mapa" placeholder="Introduce la URL del mapa">
             
             <br><br>
-            
+
+            <label for="Coordenadas GPS">Coordenadas GPS:</label>
+            <input type="text" id="Coordenadas GPS" name="Coordenadas GPS" placeholder="Ej. 40.4168, -3.7038">
+
+            <br><br>
+
             <label for="imagen">Imagen:<label>
             <input type="file" id="Imagen" name="Imagen">
 
@@ -58,6 +66,7 @@
             <input type="checkbox" id="Temperatura">
             <label for="Temperatura">Temperatura</label>
 
+
             <br><br>
 
             <input type="checkbox" id="humedad">
@@ -77,6 +86,6 @@
 
     </main>
     
-    <footer>Universidad de Alcala</footer>
+    <footer>Universidad de Alcalá</footer>
 </body>
 </html>
