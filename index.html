@@ -12,8 +12,14 @@
     <header>
         <h1>Smart Room</h1>
     </header>
+    <p id="fechaHora"></p>
 
-    <nav>Menu</nav>
+    <nav>
+        <a href="index.html" class="menu-btn">Inicio</a>
+        <a href="config.html" class="menu-btn">Configuración</a>
+        <a href="minombre.html" class="menu-btn">Nombre</a>
+    </nav>
+    
     <aside>
         <h3>Info complementaria</h3>
         <p id="Saludo"></p>
@@ -23,24 +29,45 @@
         <section>
             <a href="https://www.uah.es/es/" target="_blank">Info habitacion</a>
             <br><br>
-            <img src="https://imgs.search.brave.com/hbF-GS4Wv7r6vJAccuJ3Mc_SNsay2lcfBpHvm2BgcbI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/dWFoLmVkdS9pbWFn/ZXMvY29tX2Ryb3Bw/aWNzLzcxMC90aHVt/Ym5haWxzL3VhaC1z/dGFpcmNhc2UuanBn" alt="Imagen" width="50%">
+            <img src="imagen2.jpg" alt="Imagen" width="50%">
             <br><br>
             
         </section>
-        <section>
-            <a href="minombre.html">Nombre</a>
-            </section>
         
-        <section>Info sensores</section>
-    </main>
+        
+    <section>
+
+    <h3>Info sensores</h3>
+
+    
+    </section>
+
+
+
+    
+</main>
     
     <footer>Universidad de Alcala</footer>
+
     <script>
+        function actualizarFechaHora() {
+            let fechaHora = new Date();
+            let fechaHoraFormateada = fechaHora.toLocaleString();
+            document.getElementById("fechaHora").innerHTML = fechaHoraFormateada;
+        }
+
+        setInterval(actualizarFechaHora, 1000);
+    </script>
+   
+   <script>
+
         let nombre = localStorage.getItem("fname");
         if(nombre) {
             document.getElementById("Saludo").innerHTML = "Hola "+ nombre + ":Bienvenido a la Smart Room.";
 
         }
+
+        
     </script>
         
 </body>

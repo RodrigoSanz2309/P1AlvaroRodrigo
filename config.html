@@ -6,6 +6,42 @@
     <link rel="stylesheet" href="./css/iroom.css">
 
 </head>
+
+<script>
+
+function actualizarCiudades() {
+
+    let pais = document.getElementById("País").value;
+    let listaCiudades = document.getElementById("lista-ciudades");
+
+    listaCiudades.innerHTML = "";
+
+    let ciudades = [];
+
+    if (pais === "España") {
+        ciudades = ["Madrid", "Barcelona", "Valencia"];
+    }
+
+    else if (pais === "Francia") {
+        ciudades = ["París", "Lyon", "Marsella"];
+    }
+
+    else if (pais === "Portugal") {
+        ciudades = ["Lisboa", "Oporto", "Braga"];
+    }
+
+    ciudades.forEach(function(ciudad){
+
+        let opcion = document.createElement("option");
+
+        opcion.value = ciudad;
+
+        listaCiudades.appendChild(opcion);
+
+    });
+
+}
+</script>
 <body>
     <header>
         <h1>Smart Room</h1>
@@ -16,7 +52,7 @@
                 <h3>Datos de la habitación</h3>
 
                 <label for="País">País:</label>
-                <input type="text" id="País" name="País" placeholder="Ej. España" list="lista-paises">
+                <input type="text" id="País" name="País" placeholder="Ej. España" list="lista-paises" onchange="actualizarCiudades()">
                 <datalist id="lista-paises">
                     <option value="España"></option>
                     <option value="Portugal"></option>
@@ -26,11 +62,8 @@
                 <br><br>
 
                 <label for="Ciudad">Ciudad:</label>
-                <input type="text" id="Ciudad" name="Ciudad" placeholder="Ej. Madrid" list="lista-ciudades">
+                <input type="text" id="Ciudad" name="Ciudad" placeholder="Selecciona una ciudad" list="lista-ciudades">
                 <datalist id="lista-ciudades">
-                    <option value="Madrid"></option>
-                    <option value="Barcelona"></option>
-                    <option value="Valencia"></option>
                 </datalist>
 
                 <br><br>
