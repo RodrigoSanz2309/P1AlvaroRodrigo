@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Smart Room</title>
     <link rel="stylesheet" href="./css/iroom.css">
 </head>
@@ -14,40 +13,40 @@
     </header>
     <p id="fechaHora"></p>
 
-    <nav>
-        <a href="index.html" class="menu-btn">Inicio</a>
-        <a href="config.html" class="menu-btn">Configuración</a>
-        <a href="minombre.html" class="menu-btn">Nombre</a>
-    </nav>
-    
+    <div class="barra">
+        <nav aria-label="Menú principal">
+            <a href="index.html" class="menu-btn">Inicio</a>
+            <a href="config.html" class="menu-btn">Configuración</a>
+            <a href="minombre.html" class="menu-btn">Nombre</a>
+        </nav>
+
     <aside>
-        <h3>Info complementaria</h3>
+        <h2>Info complementaria</h2>
         <p id="Saludo"></p>
     </aside>
-    
-    <main>
+    </div>
+    <main class="inicio">
         <section>
-            <a href="https://www.uah.es/es/" target="_blank">Info habitacion</a>
-            <br><br>
-            <img src="imagen2.jpg" alt="Imagen" width="50%">
-            <br><br>
-            
+            <h2>Datos de la habitación</h2>
+            <ul>
+                <li>País: España</li>
+                <li>Ciudad: Alcalá de Henares</li>
+                <li>Mapa URL: <a href="https://www.google.com/maps/place/Alcal%C3%A1+de+Henares,+Madrid/@40.4819949,-3.364155,12z/data=!3m1!4b1!4m6!3m5!1s0xd4228f7c2e7d8d5:0x400bd2ce0c6e0f0!8m2!3d40.4819949!4d-3.364155!16zL20vMDJkZ2E?entry=ttu" target="_blank">Ver mapa</a></li>
+                <li>Coordenadas GPS: 40.4819949, -3.364155</li>
+            </ul>
+            <a href="https://www.uah.es/es/" target="_blank" rel="noopener noreferrer">Ver localización en Google Maps</a>
+            <img src="images/imagen2.jpg" alt="Dormitorio con cama doble">
         </section>
-        
-        
-    <section>
 
-    <h3>Info sensores</h3>
+        <section>
+            <h2>Info sensores</h2>
+            <p>Aquí se mostrarán los datos de los sensores seleccionados.</p>
+        </section>
+    </main>
 
-    
-    </section>
-
-
-
-    
-</main>
-    
     <footer>Universidad de Alcalá</footer>
+
+
 
     <script>
         function actualizarFechaHora() {
@@ -57,11 +56,9 @@
         }
 
         setInterval(actualizarFechaHora, 1000);
-    </script>
-   
-   <script>
 
-        let nombre = localStorage.getItem("fname");
+
+        const nombre = localStorage.getItem("fname");
         if(nombre) {
             document.getElementById("Saludo").innerHTML = "Hola "+ nombre + ": Bienvenido a la Smart Room.";
 

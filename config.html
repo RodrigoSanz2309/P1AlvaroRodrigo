@@ -2,57 +2,29 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Configuración - Smart Room</title>
     <link rel="stylesheet" href="./css/iroom.css">
 
 </head>
 
-<script>
 
-function actualizarCiudades() {
-
-    let pais = document.getElementById("País").value;
-    let listaCiudades = document.getElementById("lista-ciudades");
-
-    listaCiudades.innerHTML = "";
-
-    let ciudades = [];
-
-    if (pais === "España") {
-        ciudades = ["Madrid", "Barcelona", "Valencia"];
-    }
-
-    else if (pais === "Francia") {
-        ciudades = ["París", "Lyon", "Marsella"];
-    }
-
-    else if (pais === "Portugal") {
-        ciudades = ["Lisboa", "Oporto", "Braga"];
-    }
-
-    ciudades.forEach(function(ciudad){
-
-        let opcion = document.createElement("option");
-
-        opcion.value = ciudad;
-
-        listaCiudades.appendChild(opcion);
-
-    });
-
-}
-</script>
 <body>
     <header>
         <h1>Smart Room</h1>
-    </header>    
-    <main>
-        <form action="datos.js">
+    </header>
+    <nav aria-label="Menú principal">
+        <a href="index.html" class="menu-btn">Inicio</a>
+        <a href="config.html" class="menu-btn">Configuración</a>
+        <a href="minombre.html" class="menu-btn">Nombre</a>
+    </nav>
+    <main class="config">
+        <form action="datos.js" method="post" enctype="multipart/form-data">
             <section>
-                <h3>Datos de la habitación</h3>
+                <h2>Datos de la habitación</h2>
 
                 <label for="País">País:</label>
-                <input type="text" id="País" name="País" placeholder="Ej. España" list="lista-paises" onchange="actualizarCiudades()">
+                <input type="text" id="País" name="País" placeholder="Ej. España" list="lista-paises" autocomplete="off" onchange="actualizarCiudades()">
                 <datalist id="lista-paises">
                     <option value="España"></option>
                     <option value="Portugal"></option>
@@ -62,7 +34,7 @@ function actualizarCiudades() {
                 <br><br>
 
                 <label for="Ciudad">Ciudad:</label>
-                <input type="text" id="Ciudad" name="Ciudad" placeholder="Selecciona una ciudad" list="lista-ciudades">
+                <input type="text" id="Ciudad" name="Ciudad" placeholder="Selecciona una ciudad" list="lista-ciudades" autocomplete="off">
                 <datalist id="lista-ciudades">
                 </datalist>
 
@@ -77,7 +49,7 @@ function actualizarCiudades() {
 
                 <br><br>
                 <label for="imagen">Imagen:</label>
-                <input type="file" id="Imagen" name="Imagen">
+                <input type="file" id="Imagen" name="Imagen" accept="image/*">
 
                 <br><br>
                 <label for="Password">Contraseña:</label>
@@ -91,77 +63,108 @@ function actualizarCiudades() {
 
 
             <section>
-                <h3>Selección de sensores</h3>
-
-                <input type="checkbox" id="Temperatura">
+                <h2>Selección de sensores</h2>
+                <p>
+                <input type="checkbox" id="Temperatura" name="sensores" value="Temperatura">
                 <label for="Temperatura">Temperatura</label>
-
+                </p>
 
                 <br><br>
 
-                <input type="checkbox" id="humedad">
+                <p>
+                <input type="checkbox" id="humedad" name="sensores" value="Humedad">
                 <label for="humedad">Humedad</label>
-
+                </p>
                 <br><br>
 
-                <input type="checkbox" id="sonido">
-                <label foDr="sonido">Nivel de sonido</label>
-
+                <p>
+                <input type="checkbox" id="sonido" name="sensores" value="Sonido">
+                <label for="sonido">Nivel de sonido</label>
+                </p>
                 <br><br>
-
-                <input type="checkbox" id="luz">
+                <p>
+                <input type="checkbox" id="luz" name="sensores" value="Luz">
                 <label for="luz">Nivel de luz</label>
-
+                </p>
                 <br><br>
-
-                <input type="checkbox" id="movimiento">
+                <p>
+                <input type="checkbox" id="movimiento" name="sensores" value="Movimiento">
                 <label for="movimiento">Movimiento</label>
+                </p>
 
-                <h3>Selección de alertas</h3>
-                <label for="tempMax">Temperatura máxima:</label>
+                <h2>Selección de alertas</h2>
+                <label for="tempMax">Temperatura máxima (ºC):</label>
                 <input type="number" id="tempMax" name="tempMax" min="-20" max="45" step="0.5" placeholder="Ej. 30.5">
                 <br><br>
-                <label for="tempMin">Temperatura mínima:</label>
+                <label for="tempMin">Temperatura mínima (ºC):</label>
                 <input type="number" id="tempMin" name="tempMin" min="-20" max="45" step="0.5" placeholder="Ej. 10.5">
 
                 <br><br>
-                <label>Diferencia de temperatura:<output id="diferencia"></output></label>
+                <p>Diferencia de temperatura:<output id="diferencia" for="tempMax tempMin"></output></p>
             </section>
             <input type="submit" value="Enviar información">
         </form>
-    
+        <p class="enlace-volver">
+            <a href="index.html">Volver a la página principal</a>
+        </p>
+    </main>
+    <footer>Universidad de Alcalá</footer>
         <script>
-            //elementos para trabajar
-            let inputMax = document.getElementById("tempMax");
-            let inputMin = document.getElementById("tempMin");
-            let salidadiferencia = document.getElementById("diferencia");
-            //funcion calcular la diferencia de temperatura
-            function calculoDiferencia() {
-                let max = parseFloat(inputMax.value);
-                let min = parseFloat(inputMin.value);
-                //para saber si se han introducido valores
-                if (!isNaN(max) && !isNaN(min)) {
-                    if(max<min){
-                        inputMax.setCustomValidity("La temperatura máxima no puede ser menor que la mínima.");
-                        salidadiferencia.value = "Error: La temperatura máxima no puede ser menor que la mínima.";
-                    }else{D
-                        inputMax.setCustomValidity("");
-                        salidadiferencia.value = (max - min) " °C";
-                    }
-                }
+
+            const CIUDADES = {
+                "España": ["Madrid", "Barcelona", "Valencia"],
+                "Francia": ["París", "Lyon", "Marsella"],
+                "Portugal": ["Lisboa", "Oporto", "Braga"]
+            };
+
+            const inputPais = document.getElementById("País");
+            const listaCiudades = document.getElementById("lista-ciudades");
+
+            function actualizarCiudades() {
+                listaCiudades.innerHTML = "";
+                const ciudades = CIUDADES[inputPais.value] || [];
+                ciudades.forEach(function(ciudad){
+                    const opcion = document.createElement("option");
+                    opcion.value = ciudad;
+                    listaCiudades.appendChild(opcion);
+                });
             }
 
+            const inputMax = document.getElementById("tempMax");
+            const inputMin = document.getElementById("tempMin");
+            const salidaDiferencia = document.getElementById("diferencia");
+            const TEMP_MAX = 45;
+            const TEMP_MIN = -20;
+            function fueraDeRango(valor) {
+                return valor < TEMP_MIN || valor > TEMP_MAX;
+            }
+            function calculoDiferencia() {
+                const max = parseFloat(inputMax.value);
+                const min = parseFloat(inputMin.value);
+                inputMax.setCustomValidity("");
+                inputMin.setCustomValidity("");
+                salidaDiferencia.value = "";
+
+                if (isNaN(max) || isNaN(min)) {
+                    return;
+                }
+                if (fueraDeRango(max) || fueraDeRango(min)) {
+                    const mensaje = "Los valores de la temperatura deben estar entre " + TEMP_MIN + "ºC y " + TEMP_MAX + " ºC.";
+                    if (fueraDeRango(max)) inputMax.setCustomValidity(mensaje);
+                    if (fueraDeRango(min)) inputMin.setCustomValidity(mensaje);
+                    salidaDiferencia.value = "Error: " + mensaje;
+                    return;
+                }
+                if (max < min) {
+                    const mensaje = "La temperatura máxima no puede ser menor que la mínima.";
+                    inputMax.setCustomValidity(mensaje);
+                    salidaDiferencia.value = "Error: " + mensaje;
+                    return;
+                }
+                salidaDiferencia.value = (max - min) + " ºC";
+            }
             inputMax.addEventListener("input", calculoDiferencia);
             inputMin.addEventListener("input", calculoDiferencia);
-
         </script>
-
-    <p class="enlace-volver">
-        <a href="index.html">Volver a la página principal</a>
-    </p>
-
-    </main>
-    
-    <footer>Universidad de Alcalá</footer>
 </body>
 </html>
