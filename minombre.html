@@ -26,12 +26,14 @@
     <footer>Universidad de Alcalá</footer>
 
     <script>
-        const.input = document.getElementById("nombre");
-        input.value = localStorage.getItem("fname") || "";
-        document.getElementById("formNombre").addEventListener("submit", function(event) {
-            event.preventDefault();
-            const nombre = input.value.trim();
-            if(nombre === "") return;
+        const formulario = document.getElementById("formNombre");
+        const campo = document.getElementById("nombre");
+        campo.value = localStorage.getItem("fname") || "";
+
+        formulario.addEventListener("submit", function(evento) {
+            evento.preventDefault();
+            const nombre = campo.value.trim();
+            if (nombre === "")return;
             localStorage.setItem("fname", nombre);
             alert("Nombre guardado: " + nombre + ". Ahora puede volver a la página principal.");
         });

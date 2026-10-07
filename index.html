@@ -22,7 +22,7 @@
 
     <aside>
         <h2>Info complementaria</h2>
-        <p id="Saludo"></p>
+        <p id="saludo"></p>
     </aside>
     </div>
     <main class="inicio">
@@ -31,10 +31,9 @@
             <ul>
                 <li>País: España</li>
                 <li>Ciudad: Alcalá de Henares</li>
-                <li>Mapa URL: <a href="https://www.google.com/maps/place/Alcal%C3%A1+de+Henares,+Madrid/@40.4819949,-3.364155,12z/data=!3m1!4b1!4m6!3m5!1s0xd4228f7c2e7d8d5:0x400bd2ce0c6e0f0!8m2!3d40.4819949!4d-3.364155!16zL20vMDJkZ2E?entry=ttu" target="_blank">Ver mapa</a></li>
+                <li>Mapa URL: <a href="https://www.google.com/maps/place/Alcal%C3%A1+de+Henares,+Madrid/@40.4819949,-3.364155,12z/data=!3m1!4b1!4m6!3m5!1s0xd4228f7c2e7d8d5:0x400bd2ce0c6e0f0!8m2!3d40.4819949!4d-3.364155!16zL20vMDJkZ2E?entry=ttu" target="_blank" rel="noopener noreferrer">Ver localización en Google Maps</a></li>
                 <li>Coordenadas GPS: 40.4819949, -3.364155</li>
             </ul>
-            <a href="https://www.uah.es/es/" target="_blank" rel="noopener noreferrer">Ver localización en Google Maps</a>
             <img src="images/imagen2.jpg" alt="Dormitorio con cama doble">
         </section>
 
@@ -50,21 +49,23 @@
 
     <script>
         function actualizarFechaHora() {
-            let fechaHora = new Date();
-            let fechaHoraFormateada = fechaHora.toLocaleString();
-            document.getElementById("fechaHora").innerHTML = fechaHoraFormateada;
+            document.getElementById("fechaHora").textContent = new Date().toLocaleString();
         }
 
+        actualizarFechaHora();
         setInterval(actualizarFechaHora, 1000);
 
-
-        const nombre = localStorage.getItem("fname");
-        if(nombre) {
-            document.getElementById("Saludo").innerHTML = "Hola "+ nombre + ": Bienvenido a la Smart Room.";
-
+        function mostrarSaludo() {
+            const nombre = localStorage.getItem("fname");
+            const saludo = document.getElementById("saludo");
+            saludo.textContent = nombre ? "Hola " + nombre + ": Bienvenido a Smart Room.":"";
         }
 
-        
+        mostrarSaludo();
+        window.addEventListener("pageshow", mostrarSaludo);
+        window.addEventListener("storage", mostrarSaludo);
+
+
     </script>
         
 </body>
